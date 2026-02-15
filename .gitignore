@@ -1,0 +1,33 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Go
+*.exe
+*.test
+*.out
+vendor/
+
+# Node.js
+node_modules/
+dist/
+.nuxt/
+.output/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+mysql-data/
+
+# Coverage
+coverage/

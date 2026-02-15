@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS events (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    delivery_id VARCHAR(36) NOT NULL,
+    event_type VARCHAR(50) NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    repo_name VARCHAR(255) NOT NULL,
+    sender_login VARCHAR(255) NOT NULL,
+    sender_avatar_url TEXT,
+    title VARCHAR(500),
+    body TEXT,
+    html_url TEXT NOT NULL,
+    event_data JSON,
+    occurred_at DATETIME NOT NULL,
+    received_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_delivery_id (delivery_id),
+    INDEX idx_event_type (event_type),
+    INDEX idx_received_at (received_at),
+    INDEX idx_repo_name (repo_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
