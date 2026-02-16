@@ -14,17 +14,18 @@ const (
 
 // Config holds all application configuration loaded from environment variables.
 type Config struct {
-	GitHubClientID     string
-	GitHubClientSecret string
+	GitHubClientID      string
+	GitHubClientSecret  string
 	GitHubWebhookSecret string
-	MySQLHost          string
-	MySQLPort          int
-	MySQLUser          string
-	MySQLPassword      string
-	MySQLDatabase      string
-	BackendPort        int
-	FrontendURL        string
-	SessionSecret      string
+	MySQLHost           string
+	MySQLPort           int
+	MySQLUser           string
+	MySQLPassword       string
+	MySQLDatabase       string
+	BackendPort         int
+	FrontendURL         string
+	SessionSecret       string
+	TokenEncryptionKey  string
 }
 
 // DSN returns the MySQL Data Source Name for database/sql connection.
@@ -45,6 +46,7 @@ func Load() (*Config, error) {
 		MySQLDatabase:       getEnv("MYSQL_DATABASE", ""),
 		FrontendURL:         getEnv("FRONTEND_URL", "http://localhost:3000"),
 		SessionSecret:       getEnv("SESSION_SECRET", ""),
+		TokenEncryptionKey:  getEnv("TOKEN_ENCRYPTION_KEY", ""),
 	}
 	port, err := strconv.Atoi(getEnv("BACKEND_PORT", strconv.Itoa(defaultBackendPort)))
 	if err != nil {
@@ -58,6 +60,9 @@ func Load() (*Config, error) {
 	cfg.MySQLPort = mysqlPort
 	if cfg.MySQLUser == "" || cfg.MySQLPassword == "" || cfg.MySQLDatabase == "" {
 		return nil, fmt.Errorf("MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DATABASE are required")
+	}
+	if cfg.TokenEncryptionKey == "" {
+		return nil, fmt.Errorf("TOKEN_ENCRYPTION_KEY is required (64 hex characters for AES-256)")
 	}
 	return cfg, nil
 }

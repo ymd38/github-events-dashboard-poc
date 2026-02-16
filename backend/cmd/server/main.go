@@ -14,6 +14,7 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/hirokazuyamada/github-events-dashboard-poc/backend/internal/auth"
 	"github.com/hirokazuyamada/github-events-dashboard-poc/backend/internal/config"
+	"github.com/hirokazuyamada/github-events-dashboard-poc/backend/internal/crypto"
 	"github.com/hirokazuyamada/github-events-dashboard-poc/backend/internal/handler"
 	"github.com/hirokazuyamada/github-events-dashboard-poc/backend/internal/middleware"
 	"github.com/hirokazuyamada/github-events-dashboard-poc/backend/internal/model"
@@ -38,8 +39,12 @@ func main() {
 	r.Use(middleware.CORS(cfg.FrontendURL))
 	sseHub := sse.NewHub()
 	go sseHub.Run()
+	tokenEncryptor, err := crypto.NewTokenEncryptor(cfg.TokenEncryptionKey)
+	if err != nil {
+		log.Fatalf("failed to initialize token encryptor: %v", err)
+	}
 	eventRepo := repository.NewEventRepository(db)
-	userRepo := repository.NewUserRepository(db)
+	userRepo := repository.NewUserRepository(db, tokenEncryptor)
 	eventService := service.NewEventService(eventRepo)
 	handler.BroadcastFunc = func(event model.Event) {
 		sseHub.Broadcast(event)
