@@ -1,4 +1,4 @@
-.PHONY: up down build restart logs logs-backend logs-frontend logs-db ps clean db-shell backend-shell frontend-shell health
+.PHONY: up down build restart logs logs-backend logs-frontend logs-db ps clean db-shell backend-shell frontend-shell health ngrok
 
 # === Docker Compose ===
 
@@ -56,11 +56,18 @@ frontend-shell:
 db-shell:
 	docker compose exec db mysql -u$${MYSQL_USER:-dashboard} -p$${MYSQL_PASSWORD:-dashboard_password} $${MYSQL_DATABASE:-github_events}
 
+# === Tunnel ===
+
+## ngrokでバックエンドを公開（Webhook受信用）
+ngrok:
+	@command -v ngrok >/dev/null 2>&1 || { echo "Error: ngrok is not installed. See https://ngrok.com/download"; exit 1; }
+	ngrok http 8080
+
 # === Health Check ===
 
 ## バックエンドのヘルスチェック
 health:
-	@curl -sf http://localhost:8080/healthz && echo " OK" || echo " FAIL"
+	@curl -sf http://localhost:8080/api/health && echo " OK" || echo " FAIL"
 
 # === Help ===
 
@@ -84,6 +91,9 @@ help:
 	@echo "  backend-shell   バックエンドコンテナにシェル接続"
 	@echo "  frontend-shell  フロントエンドコンテナにシェル接続"
 	@echo "  db-shell        MySQLクライアントに接続"
+	@echo ""
+	@echo "Tunnel:"
+	@echo "  ngrok           ngrokでバックエンドを公開（Webhook受信用）"
 	@echo ""
 	@echo "Other:"
 	@echo "  health          バックエンドのヘルスチェック"
