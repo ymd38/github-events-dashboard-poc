@@ -8,6 +8,7 @@
 *.test
 *.out
 vendor/
+backend/tmp/
 
 # Node.js
 node_modules/
