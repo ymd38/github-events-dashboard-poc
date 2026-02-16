@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "a57b631073de",
+  "strategy": "manual-commit",
+  "branch": "001-github-events-dashboard",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".env",
+    ".env.example",
+    "backend/cmd/server/main.go",
+    "backend/internal/config/config.go",
+    "backend/internal/crypto/crypto.go",
+    "backend/internal/repository/user_repository.go"
+  ],
+  "sessions": [
+    {
+      "metadata": "/a5/7b631073de/0/metadata.json",
+      "transcript": "/a5/7b631073de/0/full.jsonl",
+      "context": "/a5/7b631073de/0/context.md",
+      "content_hash": "/a5/7b631073de/0/content_hash.txt",
+      "prompt": "/a5/7b631073de/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 44,
+    "cache_creation_tokens": 29522,
+    "cache_read_tokens": 1675088,
+    "output_tokens": 4855,
+    "api_call_count": 38
+  }
+}
