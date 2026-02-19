@@ -1,6 +1,7 @@
 # GitHub Events Dashboard
 
 GitHub Webhook イベントをリアルタイムで表示するダッシュボードアプリケーション。
+*Coding Agentを試すためだけの検証用のプロジェクトです*
 
 ## Tech Stack
 
