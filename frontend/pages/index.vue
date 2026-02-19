@@ -1,11 +1,12 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 py-6">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-bold text-gray-900">Events</h2>
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-xl font-bold text-gray-900">Events</h2>
       <EventFilter v-model="filterType" @update:model-value="onFilterChange" />
     </div>
-    <div v-if="loading && events.length === 0" class="flex justify-center py-12">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+    <div v-if="loading && events.length === 0" class="flex flex-col items-center justify-center py-20 gap-3">
+      <div class="animate-spin rounded-full h-8 w-8 border-2 border-gray-200 border-t-gray-700"></div>
+      <p class="text-sm text-gray-400">Loading events…</p>
     </div>
     <div v-else class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2">

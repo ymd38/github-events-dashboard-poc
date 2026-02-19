@@ -1,55 +1,67 @@
 <template>
-  <div class="space-y-3">
+  <div class="space-y-2">
     <div
       v-for="event in events"
       :key="event.id"
       :class="[
-        'bg-white rounded-lg shadow-sm border border-gray-200 p-4 cursor-pointer hover:shadow-md transition-shadow',
-        isNew(event.id) ? 'ring-2 ring-blue-400 bg-blue-50 animate-pulse-once' : ''
+        'relative overflow-hidden bg-white rounded-lg shadow-sm border border-gray-200 cursor-pointer transition-all duration-150',
+        isNew(event.id) ? 'ring-2 ring-blue-400 bg-blue-50 animate-pulse-once' : 'hover:shadow-md hover:border-gray-300',
       ]"
       @click="emit('select', event)"
     >
-      <div class="flex items-start gap-3">
+      <div
+        :class="[
+          'absolute left-0 top-0 bottom-0 w-1',
+          event.event_type === 'issues' ? 'bg-green-500' : 'bg-violet-500',
+        ]"
+      />
+      <div class="pl-4 pr-4 py-3.5 flex items-start gap-3">
         <img
           v-if="event.sender_avatar_url"
           :src="event.sender_avatar_url"
           :alt="event.sender_login"
-          class="w-10 h-10 rounded-full"
+          class="w-9 h-9 rounded-full flex-shrink-0 mt-0.5"
         />
-        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 text-sm font-bold" v-else>
+        <div
+          v-else
+          class="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 text-sm font-bold flex-shrink-0 mt-0.5"
+        >
           {{ event.sender_login.charAt(0).toUpperCase() }}
         </div>
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2 mb-1">
             <span
               :class="[
-                'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium',
+                'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold',
                 event.event_type === 'issues'
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-purple-100 text-purple-800'
+                  ? 'bg-green-100 text-green-700'
+                  : 'bg-violet-100 text-violet-700',
               ]"
             >
               {{ event.event_type === 'issues' ? 'Issue Opened' : 'PR Merged' }}
             </span>
-            <span class="text-sm text-gray-500">{{ event.repo_name }}</span>
+            <span class="text-xs text-gray-400 truncate">{{ event.repo_name }}</span>
           </div>
           <p class="text-sm font-medium text-gray-900 truncate">
             {{ event.title || 'No title' }}
           </p>
-          <div class="flex items-center gap-2 mt-1 text-xs text-gray-500">
-            <span>{{ event.sender_login }}</span>
+          <div class="flex items-center gap-1.5 mt-1 text-xs text-gray-400">
+            <span class="font-medium text-gray-500">{{ event.sender_login }}</span>
             <span>&middot;</span>
             <span>{{ formatDate(event.occurred_at) }}</span>
           </div>
         </div>
       </div>
     </div>
-    <div v-if="events.length === 0" class="text-center py-12 text-gray-500">
-      <svg class="w-12 h-12 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-      </svg>
-      <p class="text-lg font-medium">No events yet</p>
-      <p class="text-sm mt-1">Events will appear here when GitHub webhooks are received.</p>
+
+    <div v-if="events.length === 0" class="flex flex-col items-center justify-center py-16 text-center">
+      <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+        </svg>
+      </div>
+      <p class="text-base font-semibold text-gray-700">No events yet</p>
+      <p class="text-sm text-gray-400 mt-1 max-w-xs">Events will appear here when GitHub webhooks are received.</p>
     </div>
   </div>
 </template>
