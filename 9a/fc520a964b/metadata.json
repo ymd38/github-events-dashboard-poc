@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "9afc520a964b",
+  "strategy": "manual-commit",
+  "branch": "re-design",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "frontend/components/AppHeader.vue",
+    "frontend/components/EventDetail.vue",
+    "frontend/components/EventList.vue",
+    "frontend/utils/url.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/9a/fc520a964b/0/metadata.json",
+      "transcript": "/9a/fc520a964b/0/full.jsonl",
+      "context": "/9a/fc520a964b/0/context.md",
+      "content_hash": "/9a/fc520a964b/0/content_hash.txt",
+      "prompt": "/9a/fc520a964b/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 11,
+    "cache_creation_tokens": 11403,
+    "cache_read_tokens": 713177,
+    "output_tokens": 4818,
+    "api_call_count": 9
+  }
+}

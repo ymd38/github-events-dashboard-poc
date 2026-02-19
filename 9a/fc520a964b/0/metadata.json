@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "9afc520a964b",
+  "session_id": "a0e4473c-791a-40ff-9dc3-b11d52a26c68",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T16:02:43.221131Z",
+  "branch": "re-design",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "frontend/components/AppHeader.vue",
+    "frontend/components/EventDetail.vue",
+    "frontend/components/EventList.vue",
+    "frontend/utils/url.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "1d35bf19-2142-4e4d-8d77-29f47b78848f",
+  "checkpoint_transcript_start": 112,
+  "transcript_lines_at_start": 112,
+  "token_usage": {
+    "input_tokens": 11,
+    "cache_creation_tokens": 11403,
+    "cache_read_tokens": 713177,
+    "output_tokens": 4818,
+    "api_call_count": 9
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T16:02:43.091293Z",
+    "agent_lines": 36,
+    "human_added": 9,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 45,
+    "agent_percentage": 80
+  },
+  "transcript_path": ".claude/projects/-Users-hirokazuyamada-go-src-github-events-dashboard-poc/a0e4473c-791a-40ff-9dc3-b11d52a26c68.jsonl"
+}
