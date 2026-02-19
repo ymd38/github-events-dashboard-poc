@@ -1,19 +1,28 @@
 <template>
-  <div class="flex items-center gap-2">
-    <label class="text-sm font-medium text-gray-700">Filter:</label>
-    <select
-      :value="modelValue"
-      class="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-      @change="onChange"
+  <div class="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+    <button
+      v-for="option in options"
+      :key="option.value"
+      :class="[
+        'px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-150',
+        modelValue === option.value
+          ? 'bg-white text-gray-900 shadow-sm'
+          : 'text-gray-500 hover:text-gray-700',
+      ]"
+      @click="emit('update:modelValue', option.value)"
     >
-      <option value="">All Events</option>
-      <option value="issues">Issues</option>
-      <option value="pull_request">Pull Requests</option>
-    </select>
+      {{ option.label }}
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
+const options = [
+  { value: '', label: 'All' },
+  { value: 'issues', label: 'Issues' },
+  { value: 'pull_request', label: 'Pull Requests' },
+]
+
 interface Props {
   modelValue: string
 }
@@ -23,9 +32,4 @@ defineProps<Props>()
 const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
-
-const onChange = (e: globalThis.Event): void => {
-  const target = e.target as HTMLSelectElement
-  emit('update:modelValue', target.value)
-}
 </script>

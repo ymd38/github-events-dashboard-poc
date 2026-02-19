@@ -1,19 +1,19 @@
 <template>
-  <nav v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-4">
+  <nav v-if="totalPages > 1" class="flex items-center justify-center gap-1.5 mt-5">
     <button
       :disabled="page <= 1"
-      class="px-3 py-1 rounded-md text-sm border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+      class="px-3 py-1.5 rounded-lg text-sm font-medium border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-150"
       @click="emit('update:page', page - 1)"
     >
-      Previous
+      ← Prev
     </button>
     <template v-for="p in visiblePages" :key="p">
       <button
         :class="[
-          'px-3 py-1 rounded-md text-sm border',
+          'w-9 h-9 rounded-lg text-sm font-medium border transition-all duration-150',
           p === page
-            ? 'bg-blue-600 text-white border-blue-600'
-            : 'border-gray-300 bg-white hover:bg-gray-50'
+            ? 'bg-gray-900 text-white border-gray-900 shadow-sm'
+            : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:border-gray-300',
         ]"
         @click="emit('update:page', p)"
       >
@@ -22,13 +22,13 @@
     </template>
     <button
       :disabled="page >= totalPages"
-      class="px-3 py-1 rounded-md text-sm border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+      class="px-3 py-1.5 rounded-lg text-sm font-medium border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-150"
       @click="emit('update:page', page + 1)"
     >
-      Next
+      Next →
     </button>
-    <span class="text-sm text-gray-500 ml-2">
-      Page {{ page }} of {{ totalPages }} ({{ total }} events)
+    <span class="text-xs text-gray-400 ml-1">
+      {{ page }} / {{ totalPages }} ({{ total }} events)
     </span>
   </nav>
 </template>
