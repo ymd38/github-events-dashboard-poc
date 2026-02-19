@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "5276eab94e46",
+  "strategy": "manual-commit",
+  "branch": "re-design",
+  "checkpoints_count": 2,
+  "files_touched": [
+    ".claude/settings.local.json",
+    "frontend/app.vue",
+    "frontend/components/AppHeader.vue",
+    "frontend/components/EventDetail.vue",
+    "frontend/components/EventFilter.vue",
+    "frontend/components/EventList.vue",
+    "frontend/components/Pagination.vue",
+    "frontend/pages/index.vue",
+    "frontend/pages/login.vue"
+  ],
+  "sessions": [
+    {
+      "metadata": "/52/76eab94e46/0/metadata.json",
+      "transcript": "/52/76eab94e46/0/full.jsonl",
+      "context": "/52/76eab94e46/0/context.md",
+      "content_hash": "/52/76eab94e46/0/content_hash.txt",
+      "prompt": "/52/76eab94e46/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 29,
+    "cache_creation_tokens": 71805,
+    "cache_read_tokens": 1358861,
+    "output_tokens": 6555,
+    "api_call_count": 24
+  }
+}

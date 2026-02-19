@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "5276eab94e46",
+  "session_id": "a0e4473c-791a-40ff-9dc3-b11d52a26c68",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T15:54:41.914436Z",
+  "branch": "re-design",
+  "checkpoints_count": 2,
+  "files_touched": [
+    ".claude/settings.local.json",
+    "frontend/app.vue",
+    "frontend/components/AppHeader.vue",
+    "frontend/components/EventDetail.vue",
+    "frontend/components/EventFilter.vue",
+    "frontend/components/EventList.vue",
+    "frontend/components/Pagination.vue",
+    "frontend/pages/index.vue",
+    "frontend/pages/login.vue"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "08161ccb-8f41-493f-937b-ffd6ffe3d241",
+  "token_usage": {
+    "input_tokens": 29,
+    "cache_creation_tokens": 71805,
+    "cache_read_tokens": 1358861,
+    "output_tokens": 6555,
+    "api_call_count": 24
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T15:54:41.806549Z",
+    "agent_lines": 158,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 9,
+    "total_committed": 158,
+    "agent_percentage": 100
+  },
+  "transcript_path": ".claude/projects/-Users-hirokazuyamada-go-src-github-events-dashboard-poc/a0e4473c-791a-40ff-9dc3-b11d52a26c68.jsonl"
+}
