@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "cd10600e1872",
+  "session_id": "a0e4473c-791a-40ff-9dc3-b11d52a26c68",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T17:19:14.938071Z",
+  "branch": "re-design",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "README.md"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "8984ff5c-0406-4640-a91f-e68138f7dc19",
+  "checkpoint_transcript_start": 145,
+  "transcript_lines_at_start": 145,
+  "token_usage": {
+    "input_tokens": 5,
+    "cache_creation_tokens": 88590,
+    "cache_read_tokens": 174334,
+    "output_tokens": 144,
+    "api_call_count": 3
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T17:19:14.793822Z",
+    "agent_lines": 12,
+    "human_added": 9,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 21,
+    "agent_percentage": 57.14285714285714
+  },
+  "transcript_path": ".claude/projects/-Users-hirokazuyamada-go-src-github-events-dashboard-poc/a0e4473c-791a-40ff-9dc3-b11d52a26c68.jsonl"
+}

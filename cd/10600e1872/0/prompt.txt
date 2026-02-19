@@ -1,0 +1,67 @@
+frontend-ui-uxなどUI/UX、デザインのスキルで @frontend/ のデザインを評価し改善して下さい
+
+---
+
+Base directory for this skill: /Users/hirokazuyamada/.claude/skills/frontend-ui-ux
+
+# Frontend UI/UX Command
+
+Routes to the designer agent or Gemini MCP for frontend work.
+
+## Usage
+
+```
+/oh-my-claudecode:frontend-ui-ux <design task>
+```
+
+## Routing
+
+### Preferred: MCP Direct
+Before first MCP tool use, call `ToolSearch("mcp")` to discover deferred MCP tools.
+Use `mcp__g__ask_gemini` with `agent_role: "designer"` for design tasks.
+If ToolSearch finds no MCP tools, use the Claude agent fallback below.
+
+### Fallback: Claude Agent
+```
+Task(subagent_type="oh-my-claudecode:designer", model="sonnet", prompt="{{ARGUMENTS}}")
+```
+
+## Capabilities
+- Component design and implementation
+- Responsive layouts
+- Design system consistency
+- Accessibility compliance
+
+Task: {{ARGUMENTS}}
+
+---
+
+commitしてpushしてください
+
+---
+
+以下のセキュリティ上の指摘が入りました。
+
+Description: Untrusted event/user-provided URLs are rendered directly into navigable/loaded attributes
+(e.g., :href="event.html_url" here, and similarly :src="user.avatar_url" in
+frontend/components/AppHeader.vue plus :src="event.sender_avatar_url" in
+frontend/components/EventList.vue), which could enable phishing/open-redirects or
+javascript: URL execution on click unless the URL scheme/host is validated/allowlisted.
+EventDetail.vue [76-86]
+
+Referred Code
+<a
+  :href="event.html_url"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex items-center justify-center gap-2 w-full text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-4 py-2.5 transition-all duration-150"
+>
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+  </svg>
+  View on GitHub
+</a>
+
+---
+
+リポジトリは https://github.com/ymd38/dev-skills になるので @README.md のインストールコマンドを修正してコミットしてプッシュして下さい
