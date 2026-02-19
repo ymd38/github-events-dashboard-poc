@@ -17,8 +17,8 @@
       />
       <div class="pl-4 pr-4 py-3.5 flex items-start gap-3">
         <img
-          v-if="event.sender_avatar_url"
-          :src="event.sender_avatar_url"
+          v-if="safeAvatarUrl(event.sender_avatar_url)"
+          :src="safeAvatarUrl(event.sender_avatar_url) || ''"
           :alt="event.sender_login"
           class="w-9 h-9 rounded-full flex-shrink-0 mt-0.5"
         />
@@ -69,6 +69,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Event } from '~/types/event'
+import { safeAvatarUrl } from '~/utils/url'
 
 interface Props {
   events: Event[]

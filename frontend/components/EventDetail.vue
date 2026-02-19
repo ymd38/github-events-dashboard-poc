@@ -15,8 +15,8 @@
     <div class="px-5 py-4 space-y-4">
       <div class="flex items-center gap-3">
         <img
-          v-if="event.sender_avatar_url"
-          :src="event.sender_avatar_url"
+          v-if="safeSenderAvatarUrl"
+          :src="safeSenderAvatarUrl"
           :alt="event.sender_login"
           class="w-11 h-11 rounded-full ring-2 ring-gray-100"
         />
@@ -74,7 +74,8 @@
       </div>
 
       <a
-        :href="event.html_url"
+        v-if="safeHtmlUrl"
+        :href="safeHtmlUrl"
         target="_blank"
         rel="noopener noreferrer"
         class="flex items-center justify-center gap-2 w-full text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-4 py-2.5 transition-all duration-150"
@@ -99,15 +100,20 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { Event } from '~/types/event'
+import { safeGithubUrl, safeAvatarUrl } from '~/utils/url'
 
 interface Props {
   event: Event | null
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const emit = defineEmits<{
   close: []
 }>()
+
+const safeHtmlUrl = computed(() => safeGithubUrl(props.event?.html_url))
+const safeSenderAvatarUrl = computed(() => safeAvatarUrl(props.event?.sender_avatar_url))
 </script>

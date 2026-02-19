@@ -9,8 +9,8 @@
       </div>
       <div v-if="user" class="flex items-center gap-3">
         <img
-          v-if="user.avatar_url"
-          :src="user.avatar_url"
+          v-if="safeAvatarUrl(user.avatar_url)"
+          :src="safeAvatarUrl(user.avatar_url) || ''"
           :alt="user.login"
           class="w-8 h-8 rounded-full ring-2 ring-gray-700"
         />
@@ -35,6 +35,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useAuth } from '~/composables/useAuth'
+import { safeAvatarUrl } from '~/utils/url'
 
 const { user, fetchUser, logout } = useAuth()
 
