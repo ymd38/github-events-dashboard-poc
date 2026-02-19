@@ -13,14 +13,21 @@ GitHub Webhook イベントをリアルタイムで表示するダッシュボ�
 
 ## Quick Start
 
-### 1. Prerequisites
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/ymd38/dev-skills.git
+cd dev-skills
+```
+
+### 2. Prerequisites
 
 - Docker & Docker Compose
 - GitHub OAuth App ([Settings > Developer settings > OAuth Apps](https://github.com/settings/developers))
   - **Homepage URL**: `http://localhost:3000`
   - **Authorization callback URL**: `http://localhost:8080/api/auth/callback`
 
-### 2. Environment Setup
+### 3. Environment Setup
 
 ```bash
 cp .env.example .env
@@ -35,7 +42,7 @@ GITHUB_WEBHOOK_SECRET=<your_webhook_secret>
 SESSION_SECRET=<random_string>
 ```
 
-### 3. Start Services
+### 4. Start Services
 
 ```bash
 docker-compose up
@@ -46,7 +53,7 @@ This starts:
 - **Backend** on port 8080 (with hot-reload via Air)
 - **Frontend** on port 3000 (Nuxt dev server)
 
-### 4. Verify
+### 5. Verify
 
 ```bash
 curl http://localhost:8080/api/health
@@ -54,7 +61,7 @@ curl http://localhost:8080/api/health
 
 Expected: `{"status":"healthy","checks":{"database":"up"}}`
 
-### 5. Configure GitHub Webhook
+### 6. Configure GitHub Webhook
 
 1. Go to your repository **Settings > Webhooks > Add webhook**
 2. **Payload URL**: Use ngrok or similar to expose `http://localhost:8080/api/webhook`
