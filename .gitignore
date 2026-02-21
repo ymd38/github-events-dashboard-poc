@@ -3,6 +3,8 @@
 .env.local
 .env.*.local
 
+.claude/settings.local.json
+
 # Go
 *.exe
 *.test
