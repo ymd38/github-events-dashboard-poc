@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "282fe173555a",
+  "session_id": "0f9a3cc3-057e-4d57-862b-3061d82d6898",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-21T09:28:56.918436Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "docs/evaluation.backend.20260220.md",
+    "docs/spec.md"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "2ebb6be0-a850-40bf-8fd8-b3852c8ec6f0",
+  "token_usage": {
+    "input_tokens": 8,
+    "cache_creation_tokens": 20597,
+    "cache_read_tokens": 143275,
+    "output_tokens": 2133,
+    "api_call_count": 4
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-21T09:28:56.455253Z",
+    "agent_lines": 657,
+    "human_added": 0,
+    "human_modified": 10,
+    "human_removed": 371,
+    "total_committed": 667,
+    "agent_percentage": 98.50074962518741
+  },
+  "transcript_path": ".claude/projects/-Users-hirokazuyamada-go-src-github-events-dashboard-poc/0f9a3cc3-057e-4d57-862b-3061d82d6898.jsonl"
+}
