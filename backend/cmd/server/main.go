@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
@@ -36,6 +37,7 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Recovery)
 	r.Use(middleware.Logger)
+	r.Use(middleware.SecurityHeaders)
 	r.Use(middleware.CORS(cfg.FrontendURL))
 	sseHub := sse.NewHub()
 	go sseHub.Run()
@@ -49,13 +51,15 @@ func main() {
 	handler.BroadcastFunc = func(event model.Event) {
 		sseHub.Broadcast(event)
 	}
-	sessionManager := auth.NewSessionManager(cfg.SessionSecret)
+	secureCookie := strings.HasPrefix(cfg.FrontendURL, "https://")
+	sessionManager := auth.NewSessionManager(cfg.SessionSecret, secureCookie)
 	oauthHandler := auth.NewOAuthHandler(cfg.GitHubClientID, cfg.GitHubClientSecret, cfg.FrontendURL, sessionManager, userRepo)
 	sessionStore := sessions.NewCookieStore([]byte(cfg.SessionSecret))
 	sessionStore.Options = &sessions.Options{
 		Path:     "/",
 		MaxAge:   86400,
 		HttpOnly: true,
+		Secure:   secureCookie,
 		SameSite: http.SameSiteLaxMode,
 	}
 	healthHandler := handler.NewHealthHandler(db)

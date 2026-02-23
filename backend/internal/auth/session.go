@@ -18,12 +18,13 @@ type SessionManager struct {
 }
 
 // NewSessionManager creates a new SessionManager with the given secret.
-func NewSessionManager(secret string) *SessionManager {
+func NewSessionManager(secret string, secure bool) *SessionManager {
 	store := sessions.NewCookieStore([]byte(secret))
 	store.Options = &sessions.Options{
 		Path:     "/",
 		MaxAge:   sessionMaxAge,
 		HttpOnly: true,
+		Secure:   secure,
 		SameSite: http.SameSiteLaxMode,
 	}
 	return &SessionManager{store: store}
